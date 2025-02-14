@@ -1,0 +1,47 @@
+
+<div class="flex flex-col min-h-screen w-2/5 mx-auto">
+
+    <article 
+    class="bg-white rounded-lg shadow dark:bg-gray-800 p-4 flex flex-col gap-3"
+  >
+    <div class="flex justify-between">
+      <div class="flex gap-3">
+        <img
+          class="rounded-full w-14 h-14"
+          [src]="post?.user?.photo"
+          alt="image profile"
+        />
+        <div>
+          <h4 class="font-bold relative top-3">{{ post?.user?.name }}</h4>
+          <span class="font-light text-gray-400">{{
+            post.createdAt | date
+          }}</span>
+        </div>
+     
+      
+      </div>
+      
+    
+    </div>
+
+    @if(post.body){
+    <p>
+      {{ post.body }}
+    </p>
+
+    } @if(post.image) {
+    <img [src]="post.image" alt="photo post" />
+
+    }
+    <button #show class="text-blue-500 py-2 px-4 rounded self-center">
+      ShowComments
+    </button>
+
+    @defer (on interaction(show)) {
+    <app-comment [postId]="post.id"></app-comment>
+
+    } @loading {
+    <h2 class="text-center font-bold">Loading ...</h2>
+    }
+  </article>
+</div>

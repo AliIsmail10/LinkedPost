@@ -1,0 +1,11 @@
+
+/* Toggle dropdown when hovering */
+
+.dropdown-button:focus + .dropdown-menu,
+.dropdown-button:hover + .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu:hover {
+    display: block;
+}

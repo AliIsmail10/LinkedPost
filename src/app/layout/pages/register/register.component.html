@@ -1,0 +1,109 @@
+
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto">
+
+    
+    <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="name" type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label  for="name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">user name</label>
+    </div>
+     @if(registerForm.get("name")?.errors && registerForm.get("name")?.touched) {
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            @if(registerForm.get("name")?.getError("required")) {
+                <p class="font-medium">required !</p>
+            }
+    </div>
+        }
+
+    <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="email" type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+     </div>
+
+
+     @if(registerForm.get("email")?.errors && registerForm.get("email")?.touched) {
+
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+         @if(registerForm.get("email")?.getError("required")) {
+          <p class="font-medium">required !</p>
+         }
+         @else if (registerForm.get("email")?.getError("email")) {
+          <p class="font-medium">Invalid Email</p>
+         }
+        </div>
+
+      }
+    
+
+    <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="password" type="password" name="floating_password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+    </div>
+
+   <!-- Example for displaying password validation error -->
+@if(registerForm.get('password')?.errors && registerForm.get('password')?.touched) {
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+      @if(registerForm.get('password')?.getError('required')) {
+        <p class="font-medium">Password is required!</p>
+      }
+      @else if(registerForm.get('password')?.getError('pattern')) {
+        <p class="font-medium">Password must start with an uppercase letter and be 5-10 characters long!</p>
+      }
+    </div>
+  }
+  
+    <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="rePassword"  type="password" name="repeat_password" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm password</label>
+    </div>
+
+   <!-- Example for displaying password validation error -->
+@if(registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched) {
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+      @if(registerForm.get('rePassword')?.getError('required')) {
+        <p class="font-medium">rePassword is required!</p>
+      }
+      @else if(registerForm.get('rePassword')?.getError('pattern')) {
+        <p class="font-medium">Password must start with an uppercase letter and be 5-10 characters long!</p>
+      }
+
+      
+      
+    </div>
+    
+  }
+  @if(registerForm.errors){
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        <p class="font-medium">Not Match</p>
+    </div>
+  }
+  
+
+  <mat-form-field appearance="fill">
+  <mat-label>Date of Birth</mat-label>
+  <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" placeholder="Choose a date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+  
+  
+  <div class="flex items-center mb-5">
+    <input formControlName="gender" id="male" type="radio" value="male" name="gender" class="w-4 h-4 text-blue-600 bg-gray-100">
+    <label for="male" class="ms-2 text-sm font-medium">Male</label>
+  </div>
+  <div class="flex items-center mb-5">
+    <input formControlName="gender" id="female" type="radio" value="female" name="gender" class="w-4 h-4 text-blue-600 bg-gray-100">
+    <label for="female" class="ms-2 text-sm font-medium">Female</label>
+  </div>
+  
+ 
+    <button type="submit" 
+    [disabled]="registerForm.invalid || registerForm.pending" 
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+Submit
+</button>
+
+ 
+  </form>
+  
